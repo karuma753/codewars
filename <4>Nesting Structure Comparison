@@ -1,0 +1,18 @@
+def tenkai(structure, item=None):
+    if item is None:
+        item = []
+    if type(structure) == list:
+        item.append(len(structure))
+        for i in structure:
+            if type(i) != list:
+                item.append(1)
+            else:
+                item.append("L")
+                return tenkai(i, item)
+        return item
+    else:
+        item.append(1)
+        return item
+    
+def same_structure_as(original,other):
+    return all(x == y for x, y in zip(tenkai(original), tenkai(other)))
